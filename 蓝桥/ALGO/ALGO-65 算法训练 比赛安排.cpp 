@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cstring>
+#include <cmath>
+using namespace std;
+int main() {
+    int n, m, a[1000], mp[10000] = {0};
+    cin >> n;
+    m = pow(2, n);
+    for (int i = 1; i <= m - 1; i++) {
+        memset(a, 0, sizeof(a));
+        printf("<%d>", i);
+        for (int j = 1; j <= m; j++) {
+            if (a[j] == 0) {
+                for (int k = j + 1; k <= m; k++) {
+                    if (mp[j * 100 + k] == 0 && a[k] == 0) {
+                        printf("%d-%d ", j, k);
+                        mp[j * 100 + k] = 1;
+                        a[j] = a[k] = 1;
+                        break;
+                    }
+                }
+            }
+
+        }
+        cout << endl;
+    }
+    return 0;
+}
