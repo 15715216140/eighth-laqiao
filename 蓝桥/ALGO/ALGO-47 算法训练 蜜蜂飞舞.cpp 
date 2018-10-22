@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    int n, x1 = 0, y1 = 0, z1 = 0, x2 = 0, y2 = 0, z2 = 0;
+    cin >> n;
+    for (int i = 0; i <= n; i++) {
+        int tx1, ty1, tz1, tx2, ty2, tz2, t;
+        cin >> tx1 >> ty1 >> tz1 >> tx2 >> ty2 >> tz2;
+        if (i == n) t = 1;
+        else cin >> t;
+        x1 += tx1 * t;
+        y1 += ty1 * t;
+        z1 += tz1 * t;
+        x2 += tx2 * t;
+        y2 += ty2 * t;
+        z2 += tz2 * t;
+    }
+    double ans = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
+    printf("%.4f", ans);
+    return 0;
+}

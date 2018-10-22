@@ -1,0 +1,43 @@
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main() {
+    int n, k, t, a[10], index[10], cnt = 1;
+    vector<pair<int, int> > v;
+    cin >> n >> k;
+    for (int i = 0; i < n; i++) 
+        a[i] = i;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> t;
+            if (t == 0 && i != j) {
+                v.push_back({i, j});
+            }
+        }
+    }
+    do {
+        int flag = 0;
+        for (int i = 0; i < n; i++)
+            index[a[i]] = i;
+        for (int i = 0; i < v.size(); i++) {
+            if (index[v[i].second] - index[v[i].first] == 1) {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag == 0) {
+            if (cnt == k) {
+                for (int i = 0; i < n; i++)
+                    cout << a[i] << ' ';
+                break;
+            } else {
+                cnt++;
+            }
+
+        }
+
+    } while (next_permutation(a, a + n));
+    return 0;
+}
