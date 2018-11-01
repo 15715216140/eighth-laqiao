@@ -1,0 +1,58 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <cmath>
+using namespace std;
+string mul(string s1, string s2) {
+    if (s1.length() > 505) s1 = s1.substr(s1.length() - 505);
+    if (s2.length() > 505) s1 = s2.substr(s2.length() - 505);
+    vector<int> v(s1.length() + s2.length(), 0);
+    reverse(s1.begin(), s1.end());
+    reverse(s2.begin(), s2.end());
+    for (int i = 0; i < s1.length(); i++) {
+        for (int j = 0; j < s2.length(); j++) {
+            int t = (s1[i] - '0') * (s2[j] - '0') + v[i + j];
+            v[i + j] = t % 10;
+            v[i + j + 1] += t / 10;
+        }
+    }
+    int i;
+    for (i = v.size() - 1; v[i] == 0; i--);
+    string ans(i + 1, '0');
+    for (int j = 0; j <= i; j++)
+        ans[j] = v[i - j] + '0';
+    return ans;
+
+}
+string f(int p) {
+    if (p == 1) return "2";
+    if (p % 2 == 1) return mul(f(p - 1), "2");
+    string s = f(p / 2);
+    return mul(s, s);
+}
+
+string cut(string s, int index) {
+    if (s[index] != 0) {
+        s[index] = s[index] - 1;
+        return s;
+    } else {
+        s[index] = '9';
+        return cut(s, index - 1);
+    }
+}
+int main() {
+    int p;
+    cin >> p;
+    string s = f(p);
+    string ans = cut(s, s.length() - 1);
+    cout << (int) (p * log10(2)) + 1 << endl;
+    string add(500, '0');
+    ans = add + ans;
+    ans = ans.substr(ans.length() - 500);
+    for (int i = 0; i < 500; i++) {
+        cout << ans[i];
+        if ((i + 1) % 50 == 0) cout << endl;
+    }
+    return 0;
+}
