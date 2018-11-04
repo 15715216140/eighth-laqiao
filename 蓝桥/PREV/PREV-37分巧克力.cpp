@@ -28,4 +28,5 @@ int main() {
             l = mid + 1;
         }
     }
+    return 0;
 }

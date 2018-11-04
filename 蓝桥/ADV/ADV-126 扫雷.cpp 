@@ -27,7 +27,6 @@ int main() {
                     a[i][j] = sum + '0';
                 }
                 cout << a[i][j];
-
             }
             cout << endl;
         }
@@ -35,4 +34,3 @@ int main() {
     }
     return 0;
 }
-

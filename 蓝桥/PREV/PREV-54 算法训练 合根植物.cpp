@@ -29,4 +29,5 @@ int main() {
     for (int i = 1; i <= m * n; i++)
         if (find(i) == i) ans++;
     cout << ans << endl;
+    return 0;
 }

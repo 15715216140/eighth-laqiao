@@ -3,9 +3,7 @@
 #include <vector>
 #include <cctype>
 #include <map>
-
 using namespace std;
-
 int f(string s1, string s2) {
     s1 += char(0);
     s2 += char(0);

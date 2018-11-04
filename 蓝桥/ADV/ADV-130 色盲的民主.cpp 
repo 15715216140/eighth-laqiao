@@ -16,6 +16,5 @@ int main() {
         if (i->second == maxn)
             cout << i->first << endl;
     }
-
     return 0;
 }
