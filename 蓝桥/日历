@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+#include <cstring>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+int date_day(int y, int m, int d) {
+    if (m == 1 || m == 2) {
+        y--;
+        m += 12;
+    }
+    int week = (d + 2 * m + 3 * (m + 1) / 5 + y + y / 4 - y / 100 + y / 400) % 7;
+    return week;
+}
+int main() {
+    vector<int> v;
+    int year, mon, beginday, days;
+    scanf("%d %d",&year, &mon);
+    if(year < 2007) {
+        cout << endl;
+        return 0;
+    }
+    if (mon == 2) {
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            days = 29;
+        } else {
+            days = 28;
+        }
+    } else {
+        if (mon == 1 || mon == 3 || mon == 5 || mon == 7 || mon == 8 || mon == 10 || mon == 12) {
+            days = 31;
+        } else {
+            days = 30;
+        }
+    }
+    beginday = date_day(year, mon, 1);
+    for (int i = 0; i <= beginday; i++)
+        v.push_back(0);
+    for (int i = 1; i <= days; i++)
+        v.push_back(i);
+    printf("Calendar %d-%02d\n",year,mon);
+    printf("---------------------\n");
+    printf("Su Mo Tu We Th Fr Sa\n");
+    printf("---------------------\n");
+    for(int i = 0; i < v.size(); i++){
+        if(v[i] != 0){
+            if((i+1) % 7 == 0) printf("%d\n",v[i]);
+            else printf("%d ",v[i]);
+        }
+    }
+    if((v[v.size()-1] + 1) % 7 !=  0) printf("\n");
+    printf("---------------------\n");
+    return 0;
+
+}

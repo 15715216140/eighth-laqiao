@@ -1,0 +1,24 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int main() {
+    int n, cnt = 0;
+    cin >> n;
+    while (n != 6174) {
+        int t = n, n1, n2;
+        vector<int> v;
+        while (t) {
+            v.push_back(t % 10);
+            t /= 10;
+        }
+        sort(v.begin(), v.end(), greater<int>());
+        n2 = (((v[0]) * 10 + v[1]) * 10 + v[2]) * 10 + v[3];
+        sort(v.begin(), v.end(), less<int>());
+        n1 = (((v[0]) * 10 + v[1]) * 10 + v[2]) * 10 + v[3];
+        n = n2 - n1;
+        cnt++;
+    }
+    cout << cnt;
+    return 0;
+}
